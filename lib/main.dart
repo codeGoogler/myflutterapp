@@ -1,161 +1,157 @@
 import 'package:flutter/material.dart';
 
-void main()=>runApp(myApp4());
-const contentV = "该runApp函数接受给定的Widget并使其成为widget树的根。 在此示例中，widget树由两个widget:Center(及其子widget)和Text组成。框架强制根widget覆盖整个屏幕，这意味着文本“Hello, world”会居中显示在屏幕上。文本显示的方向需要在Text实例中指定，当使用MaterialApp时，文本的方向将自动设定，稍后将进行演示";
+
+//这个是主程序入口类
+void main()=>runApp(MyApp());
 
 
 
-
-
-class myApp4 extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Paint paint = Paint();
-    paint.color = Color.fromARGB(125, 12, 125, 12);
-    return MaterialApp(
-      title:"测试ContainWeight",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("hollo world 标题"),
-        ),
-        body: Center(
-//          child: new Text("dadad"),
-            child:Container(
-                child: new Image.network("http://www.guangyuanol.cn/uploads/allimg/190128/12435242L-0.jpg",
-                  scale: 2,
-                  fit: BoxFit.fitWidth,
-//                  width: 200,
-//                  height: 200,
-//                color: Colors.greenAccent,
-                  repeat: ImageRepeat.noRepeat,
-                  colorBlendMode: BlendMode.src,
-                ),
-                width: 400,
-                height: 300,
-//               color: Colors.green,
-                alignment: Alignment.center,
-                decoration:  new BoxDecoration(
-                  gradient: const LinearGradient(
-                      colors: [
-                        Colors.red,
-                        Colors.blue,
-                        Colors.yellow
-                      ]
-                  ),
-                )
-            )
-        ),
+    // TODO: implement build
+    return new MaterialApp(
+      title: "主程序入口",
+      theme: new ThemeData(
+//          primaryColor: Colors.red,
+//          accentColor: Colors.yellow
+//        primaryColor: Colors.lightBlue[800],
+//        accentColor: Colors.cyan[600],
+        primarySwatch: Colors.blue,
+      ),
+      home: new MyAppHome(),
+    );
+  }
+
+}
+//当您描述的用户界面部分不依赖于对象本身中的配置信息和其中构件被夸大的BuildContext时，无状态小部件很有用。对于可以动态改变的组合，例如由于具有内部时钟驱动状态，或取决于某些系统状态，请考虑使用StatefulWidget。
+class MyAppHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          title: Text("主程序入口"),
+          //appBar学习参考博客：https://blog.csdn.net/liu__520/article/details/83956108#7bottom_widget_151
+          backgroundColor: Colors.red,
+          //中主要内容，通常显示为当前界面的标题文字。
+          leading: new Image.network(
+              "https://upload-images.jianshu.io/upload_images/14371339-2e7996a398500eae.png"),
+          //在标题前面显示的一个控件，在首页通常显示应用的 logo；在其他界面通常显示为返回按钮。
+          actions: list,
+          //一个 Widget 列表，代表 Toolbar 中所显示的菜单，对于常用的菜单，通常使用 IconButton 来表示；对于不常用的菜单通常使用PopupMenuButton 来显示为三个点，点击后弹出二级菜单。
+          // bottom:PreferredSize(child: new Center(child: new Text('bottom')),preferredSize: Size(30, 30)) ,//一个 AppBarBottomWidget 对象，通常是 TabBar。用来在 Toolbar 标题下面显示一个 Tab 导航栏。
+          bottom: PreferredSize(child: Container(
+            child: new Center(child: new Text('bottom')),
+            color: Colors.yellow,), preferredSize: Size(30, 30)),
+          //一个 AppBarBottomWidget 对象，通常是 TabBar。用来在 Toolbar 标题下面显示一个 Tab 导航栏。
+//      elevation://纸墨设计中控件的 z 坐标顺序，默认值为 4，对于可滚动的 SliverAppBar，当 SliverAppBar 和内容同级的时候，该值为 0， 当内容滚动
+//      SliverAppBar://变为 Toolbar 的时候，修改 elevation 的值。
+//      flexibleSpace://一个显示在 AppBar 下方的控件，高度和 AppBar 高度一样，可以实现一些特殊的效果，该属性通常在 SliverAppBar 中使用
+//      backgroundColor://Appbar 的颜色，默认值为 ThemeData.primaryColor。该值通常和下面的三个属性一起使用：
+//      brightness://App bar 的亮度，有白色和黑色两种主题，默认值为 ThemeData.primaryColorBrightness
+//      iconTheme://App bar 上图标的颜色、透明度、和尺寸信息。默认值为 ThemeData.primaryIconTheme
+          textTheme: new TextTheme(),
+          //App bar 上的文字样式。默认值为 ThemeData.primaryTextTheme
+          centerTitle: true // 标题是否居中显示，默认值根据不同的操作系统，显示方式不一样
+      ),
+      body: new MyHomeListPage(
+        item: <Map<String,String>>[
+              {"id":"1", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"2", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"3", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"4", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"5", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"6", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"7", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"8", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"9", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"10", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+        ],
+
       ),
     );
+  }
 
+}
+
+class MyHomeListPage extends StatelessWidget{
+
+  List<Map<String,String>> item;
+
+  MyHomeListPage({
+    Key key,
+    @required this.item,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ListView.builder(itemBuilder: (_,int index) => createItemBuild(context,item[index]));
   }
 }
 
+createItemBuild(BuildContext context,Map<String,String> map) {
+      return new GestureDetector(
+        onTap: onTapClick(context,map),
+        child: new Column(
+          children: <Widget>[
 
-
-class myApp3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Paint paint = Paint();
-    paint.color = Color.fromARGB(125, 12, 125, 12);
-    return MaterialApp(
-      title:"测试ContainWeight",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("hollo world 标题"),
-        ),
-        body: Center(
-//          child: new Text("dadad"),
-            child:Container(
-                child: new Text("卡卡罗特卡卡罗特卡卡罗特卡卡罗特卡卡罗特卡卡罗特",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 12, 255,8),
-                    fontSize: 19,
-                    background:paint,
-
-                  ),
-                  textAlign: TextAlign.start,
-                ),
-                width:500,
-                height:400,
-//              color: Colors.red,
-                padding:  const EdgeInsets.fromLTRB(20,150,10,20),
-                alignment:   Alignment.topLeft,
-                margin: const EdgeInsets.fromLTRB(10,20,20,10),
-
-                decoration:  new BoxDecoration(
-                  gradient: const LinearGradient(
-                      colors: [
-                        Colors.red,
-                        Colors.blue,
-                        Colors.purple
-                      ]
-                  ),
-                )
-            )
-        ),
-      ),
-    );
-
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-class MyApp2 extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    Paint paint =   Paint();
-    paint.color = Color(0xFFFF4600);
-
-    return MaterialApp(
-      title: "hello ,welcome to come to yuer fultter",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("hollo world 标题"),
-        ),
-        body: Center(
-          child: Text(contentV,
-              textAlign:TextAlign.start,
-              maxLines: 10,
-              textDirection:TextDirection.ltr,
-              style:TextStyle(
-//              color: Color(0xFFFF00FF),
-                color: Color.fromARGB(255,13, 255,0),
-                fontSize:12,
-                fontWeight:FontWeight.normal,
-                fontStyle:FontStyle.italic,
-                letterSpacing:1,
-                wordSpacing:112,
-                textBaseline:TextBaseline.ideographic,
-                height:1.2,
-//              locale,
-//              foreground,
-//                background:paint,
-//              shadows,
-                decoration:TextDecoration.overline,
-                decorationColor:Color.fromARGB(255,255, 44,0),
-                decorationStyle:TextDecorationStyle.solid,//绘制文本装饰的样式（例如，虚线）。
-//              debugLabel:r
-              ),
-//            locale://此属性很少设置，用于选择区域特定字形的语言环境
-//            softWrap:false, //某一行中文本过长，是否需要换行。默认为true，如果为false，则文本中的字形将被定位为好像存在无限的水平空间
-              overflow :TextOverflow.ellipsis,
-              textScaleFactor:1.5,//每个逻辑像素的字体像素数  例如，如果文本比例因子为1.5，则文本将比指定的字体大小大50％。
-              semanticsLabel:"Text semanticsLabel"
+          new Container(
+            height: 100,
+            margin: EdgeInsets.all(10),
+            alignment: Alignment.center,
+//            child: new Text(map["id"]),
+              child:new Row(
+                  mainAxisAlignment:MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    new Text(map["id"]),
+                    new Text(map["title"]),
+                    new Image.network(map["imageUrl"])
+                  ],
+              )
           ),
+            Divider(
+              height: 0.5,
+            )
+          ],
+
         ),
-      ),
-    );
+      );
   }
 
-}
+
+    onTapClick(BuildContext context,Map<String,String> map){
+      if(map["id"] ==  "1"){
+
+      }
+  }
+
+
+//class Bean {
+//
+//       String title;
+//      String id;
+//      String type;
+//      String imageUrl;
+//      Bean({
+//        Key key,
+//        @required this.title,
+//        @required this.id,
+//        @required this.imageUrl,
+//        @required this.type,
+//      }):super(key:key)
+//}
+
+     List<Widget> list = <Widget>[
+       new Text("1"),
+       new Text("2"),
+       new Text("3"),
+       new Text("4"),
+       new Text("5"),
+       new Text("6"),
+       new Text("7"),
+       new Text("8"),
+       new Text("9"),
+       new Text("10")
+     ];
+//}
