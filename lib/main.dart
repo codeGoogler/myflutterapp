@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:myflutterapp/main/pullToRefreshStatefulWidget.dart';
 
 
 //这个是主程序入口类
@@ -20,6 +23,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: new MyAppHome(),
+      routes:  <String ,WidgetBuilder>{
+
+        "/pullToRefresh": (_) => new PullToRefreshStatefulWidget()
+      }
     );
   }
 
@@ -98,7 +105,7 @@ createItemBuild(BuildContext context,Map<String,String> map) {
 
           new Container(
             height: 100,
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.all(9),
             alignment: Alignment.center,
 //            child: new Text(map["id"]),
               child:new Row(
@@ -122,7 +129,7 @@ createItemBuild(BuildContext context,Map<String,String> map) {
 
     onTapClick(BuildContext context,Map<String,String> map){
       if(map["id"] ==  "1"){
-
+//        Navigator.of(context).pushNamed('/pullToRefresh');
       }
   }
 
@@ -154,4 +161,18 @@ createItemBuild(BuildContext context,Map<String,String> map) {
        new Text("9"),
        new Text("10")
      ];
+
+   void ss(){
+     //当给到一个不存在的文件地址时会发生异常，这时候可以利用catchError捕获此异常。
+    //then().catchError() 模式就是异步的 try-catch。
+     File f = new File("/Users/enjoy/a1.txt");
+     f.readAsString().then((content) {
+       print(content);
+     }).catchError((e, s) {
+       print(s);
+     });
+   }
 //}
+
+onError() {
+}
