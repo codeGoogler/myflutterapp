@@ -73,6 +73,7 @@ class MyAppHome extends StatelessWidget {
               {"id":"8", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
               {"id":"9", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
               {"id":"10", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
+              {"id":"10", "title": '下拉刷新', 'type': 'pullToRefresh',"imageUrl":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1189507460,2869812183&fm=26&gp=0.jpg"},
         ],
 
       ),
@@ -93,13 +94,16 @@ class MyHomeListPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ListView.builder(itemBuilder: (_,int index) => createItemBuild(context,item[index]));
+
+    return ListView.builder(itemBuilder: (_,int index) => createItemBuild(context,item[index],index));
   }
 }
 
-createItemBuild(BuildContext context,Map<String,String> map) {
+createItemBuild(BuildContext context,Map<String,String> map,int index) {
+  print("=============123===================$map");
       return new GestureDetector(
         onTap: onTapClick(context,map),
+
         child: new Column(
           children: <Widget>[
 
